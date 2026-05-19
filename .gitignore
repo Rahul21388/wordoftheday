@@ -1,0 +1,28 @@
+node_modules/
+.expo/
+.expo-shared/
+dist/
+web-build/
+*.log
+.DS_Store
+ios/Pods/
+android/.gradle/
+android/app/build/
+android/build/
+.env
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
+
+# Local tool and config folders
+.claude/
+.emergent/
+memory/
+.gitconfig
+*.zip

@@ -1,0 +1,76 @@
+{
+  "expo": {
+    "name": "Word of the Day",
+    "slug": "word-of-the-day",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "wordoftheday",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#1a1a1a",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1a1a1a"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "ON_LOAD"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.wordoftheday",
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "fetch",
+          "remote-notification"
+        ],
+        "BGTaskSchedulerPermittedIdentifiers": [
+          "wod-reminder-refresh"
+        ]
+      }
+    },
+    "android": {
+      "package": "com.example.wordoftheday",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1a1a1a"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-updates",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/adaptive-icon.png",
+          "color": "#14b8a6",
+          "defaultChannel": "daily-reminder"
+        }
+      ]
+    ],
+    "extra": {
+      "admobAndroidAppId": "ca-app-pub-3940256099942544~3347511713",
+      "admobAndroidBannerId": "ca-app-pub-3940256099942544/6300978111",
+      "admobIosBannerId": "ca-app-pub-3940256099942544/2934735716",
+      "admobAndroidInterstitialId": "ca-app-pub-3940256099942544/1033173712",
+      "admobIosInterstitialId": "ca-app-pub-3940256099942544/4411468910",
+      "revenueCatApiKeyAndroid": "REPLACE_WITH_REVENUECAT_ANDROID_KEY",
+      "revenueCatApiKeyIos": "REPLACE_WITH_REVENUECAT_IOS_KEY",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.example.wordoftheday",
+      "appStoreUrl": "https://apps.apple.com/app/idXXXXXXXXX",
+      "privacyPolicyUrl": "https://rahulprakash.co.in/apps/wordoftheday/privacy",
+      "feedbackEmail": "admin@rahulprakash.co.in",
+      "eas": {
+        "projectId": "dce7fbd6-dc4f-4759-84fd-595889f5af69"
+      }
+    },
+    "owner": "rahul_prakash_2"
+  }
+}
