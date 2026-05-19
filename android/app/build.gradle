@@ -82,15 +82,20 @@ def enableMinifyInReleaseBuilds = (findProperty('android.enableMinifyInReleaseBu
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+// Exclude Amazon AppStore SDK — this app targets Google Play only
+configurations.all {
+    exclude group: 'com.amazon.device', module: 'amazon-appstore-sdk'
+}
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.example.wordoftheday'
+    namespace 'com.rahulprakash.wordoftheday'
     defaultConfig {
-        applicationId 'com.example.wordoftheday'
+        applicationId 'com.rahulprakash.wordoftheday'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

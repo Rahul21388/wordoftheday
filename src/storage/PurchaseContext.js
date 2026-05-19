@@ -7,7 +7,12 @@ import React, {
   useCallback,
 } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { purchaseRemoveAds, restorePurchases } from "../utils/purchase";
+import {
+  configurePurchases,
+  checkEntitlement,
+  purchaseRemoveAds,
+  restorePurchases,
+} from "../utils/purchase";
 
 const STORAGE_KEY = "@wod/purchase/remove_ads/v1";
 
@@ -25,9 +30,15 @@ export function PurchaseProvider({ children }) {
   useEffect(() => {
     (async () => {
       try {
+        // Show cached value immediately while we fetch live state
         const raw = await AsyncStorage.getItem(STORAGE_KEY);
         if (raw === "1") setRemoveAds(true);
-      } catch (e) {}
+
+        await configurePurchases();
+        const entitled = await checkEntitlement();
+        setRemoveAds(entitled);
+        await AsyncStorage.setItem(STORAGE_KEY, entitled ? "1" : "0");
+      } catch {}
       setReady(true);
     })();
   }, []);
@@ -36,7 +47,7 @@ export function PurchaseProvider({ children }) {
     setRemoveAds(value);
     try {
       await AsyncStorage.setItem(STORAGE_KEY, value ? "1" : "0");
-    } catch (e) {}
+    } catch {}
   }, []);
 
   const buyRemoveAds = useCallback(async () => {

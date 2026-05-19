@@ -1,4 +1,4 @@
-package com.example.wordoftheday
+package com.rahulprakash.wordoftheday
 
 import android.app.Application
 import android.content.res.Configuration

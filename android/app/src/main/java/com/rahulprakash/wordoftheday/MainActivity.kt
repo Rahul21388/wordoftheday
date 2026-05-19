@@ -1,4 +1,4 @@
-package com.example.wordoftheday
+package com.rahulprakash.wordoftheday
 
 import android.os.Build
 import android.os.Bundle

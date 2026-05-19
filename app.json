@@ -22,7 +22,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.example.wordoftheday",
+      "bundleIdentifier": "com.rahulprakash.wordoftheday",
       "infoPlist": {
         "UIBackgroundModes": [
           "fetch",
@@ -34,7 +34,7 @@
       }
     },
     "android": {
-      "package": "com.example.wordoftheday",
+      "package": "com.rahulprakash.wordoftheday",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
@@ -56,14 +56,12 @@
       ]
     ],
     "extra": {
-      "admobAndroidAppId": "ca-app-pub-3940256099942544~3347511713",
-      "admobAndroidBannerId": "ca-app-pub-3940256099942544/6300978111",
+      "admobAndroidAppId": "ca-app-pub-9942161594730475~8689542216",
+      "admobAndroidBannerId": "ca-app-pub-9942161594730475/3437215532",
       "admobIosBannerId": "ca-app-pub-3940256099942544/2934735716",
-      "admobAndroidInterstitialId": "ca-app-pub-3940256099942544/1033173712",
+      "admobAndroidInterstitialId": "ca-app-pub-9942161594730475/6499631210",
       "admobIosInterstitialId": "ca-app-pub-3940256099942544/4411468910",
-      "revenueCatApiKeyAndroid": "REPLACE_WITH_REVENUECAT_ANDROID_KEY",
-      "revenueCatApiKeyIos": "REPLACE_WITH_REVENUECAT_IOS_KEY",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.example.wordoftheday",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.rahulprakash.wordoftheday",
       "appStoreUrl": "https://apps.apple.com/app/idXXXXXXXXX",
       "privacyPolicyUrl": "https://rahulprakash.co.in/apps/wordoftheday/privacy",
       "feedbackEmail": "admin@rahulprakash.co.in",

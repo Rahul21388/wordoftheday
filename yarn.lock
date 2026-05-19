@@ -4720,6 +4720,11 @@ react-native-google-mobile-ads@^16.3.3:
     "@iabtcf/core" "^1.5.6"
     use-deep-compare-effect "^1.8.1"
 
+react-native-iap@^15.3.0:
+  version "15.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-iap/-/react-native-iap-15.3.0.tgz#dc74ec04e766d6ab7714a38e3c36134fa2c5f00a"
+  integrity sha512-vvTtU6loB6K0Oy9xdNLDCA+RpY18wZ6+iViIHu9WzrWkU3v/cTwF6ibLAwjAjnzymFX46Xygz5+phYiGRIJJug==
+
 react-native-is-edge-to-edge@^1.2.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-native-is-edge-to-edge/-/react-native-is-edge-to-edge-1.3.1.tgz#feb9a6a8faf0874298947edd556e5af22044e139"

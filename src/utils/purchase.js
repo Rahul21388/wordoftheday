@@ -1,38 +1,47 @@
-// Placeholder purchase layer.
-// Replace this module with `react-native-purchases` (RevenueCat) logic:
-//   - Purchases.configure({ apiKey })
-//   - Purchases.getOfferings() -> show package
-//   - Purchases.purchasePackage(pkg)
-//   - Read customerInfo.entitlements.active['remove_ads']
+import {
+  initConnection,
+  getAvailablePurchases,
+  requestPurchase,
+  finishTransaction,
+} from "react-native-iap";
 
-import { Alert } from "react-native";
+const PRODUCT_ID = "remove_ads";
+
+export async function configurePurchases() {
+  try {
+    await initConnection();
+  } catch {}
+}
+
+export async function checkEntitlement() {
+  try {
+    const purchases = await getAvailablePurchases();
+    return purchases.some((p) => p.productId === PRODUCT_ID);
+  } catch {
+    return false;
+  }
+}
 
 export async function purchaseRemoveAds() {
-  return new Promise((resolve) => {
-    Alert.alert(
-      "Remove Ads",
-      "This is a placeholder for the in-app purchase flow. In a production build this would launch the RevenueCat / Play Billing purchase sheet.",
-      [
-        {
-          text: "Cancel",
-          style: "cancel",
-          onPress: () => resolve({ purchased: false, cancelled: true }),
-        },
-        {
-          text: "Simulate Purchase",
-          onPress: () => resolve({ purchased: true }),
-        },
-      ]
-    );
-  });
+  try {
+    const purchase = await requestPurchase({ skus: [PRODUCT_ID] });
+    if (purchase) {
+      await finishTransaction({ purchase, isConsumable: false });
+      return { purchased: true };
+    }
+    return { purchased: false };
+  } catch (e) {
+    if (e.code === "E_USER_CANCELLED") return { purchased: false, cancelled: true };
+    return { purchased: false, error: e.message };
+  }
 }
 
 export async function restorePurchases() {
-  return new Promise((resolve) => {
-    Alert.alert(
-      "Restore Purchases",
-      "Placeholder restore flow. Simulating no previous purchases.",
-      [{ text: "OK", onPress: () => resolve({ purchased: false }) }]
-    );
-  });
+  try {
+    const purchases = await getAvailablePurchases();
+    const purchased = purchases.some((p) => p.productId === PRODUCT_ID);
+    return { purchased };
+  } catch (e) {
+    return { purchased: false, error: e.message };
+  }
 }
