@@ -37,11 +37,12 @@ function formatTime(hour, minute) {
 export default function SettingsScreen() {
   const colors = useColors();
   const { isDark, toggleTheme } = useTheme();
-  const { removeAds, buyRemoveAds, restore } = usePurchase();
+  const { removeAds, price, buyRemoveAds, restore } = usePurchase();
   const reminder = useReminder();
   const [aboutOpen, setAboutOpen] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false);
   const [checking, setChecking] = useState(false);
+  const [purchasing, setPurchasing] = useState(false);
   const [timePickerOpen, setTimePickerOpen] = useState(false);
 
   const version =
@@ -73,9 +74,33 @@ export default function SettingsScreen() {
       Alert.alert("Remove Ads", "You already have ad-free access. Thank you!");
       return;
     }
+    if (purchasing) return;
+    setPurchasing(true);
     const r = await buyRemoveAds();
+    setPurchasing(false);
     if (r.purchased) {
       Alert.alert("Success", "Ads have been removed. Enjoy!");
+    } else if (!r.cancelled) {
+      Alert.alert(
+        "Purchase Failed",
+        r.error
+          ? `Something went wrong: ${r.error}`
+          : "The purchase could not be completed. Please try again."
+      );
+    }
+  };
+
+  const onRestore = async () => {
+    const r = await restore();
+    if (r.purchased) {
+      Alert.alert("Restored", "Your ad-free purchase has been restored. Enjoy!");
+    } else {
+      Alert.alert(
+        "Nothing to Restore",
+        r.error
+          ? `Could not restore purchases: ${r.error}`
+          : "No previous purchase was found for this account."
+      );
     }
   };
 
@@ -155,8 +180,20 @@ export default function SettingsScreen() {
               ? "Thank you for supporting the app."
               : "One-time purchase to hide all banner and interstitial ads."
           }
-          rightLabel={removeAds ? "Active" : undefined}
-          showChevron={!removeAds}
+          rightLabel={
+            purchasing ? undefined : removeAds ? "Active" : price ?? undefined
+          }
+          rightElement={
+            purchasing ? (
+              <ActivityIndicator
+                size="small"
+                color={colors.teal}
+                style={{ marginRight: 6 }}
+              />
+            ) : null
+          }
+          showChevron={false}
+          disabled={purchasing}
           onPress={onBuyRemoveAds}
         />
         {!removeAds && (
@@ -165,7 +202,7 @@ export default function SettingsScreen() {
             icon="refresh-cw"
             label="Restore Purchases"
             description="Already paid on another device? Restore here."
-            onPress={restore}
+            onPress={onRestore}
           />
         )}
 

@@ -2,7 +2,7 @@
   "expo": {
     "name": "Word of the Day",
     "slug": "word-of-the-day",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "wordoftheday",
@@ -14,9 +14,11 @@
       "backgroundColor": "#1a1a1a"
     },
     "updates": {
+      "url": "https://u.expo.dev/dce7fbd6-dc4f-4759-84fd-595889f5af69",
       "fallbackToCacheTimeout": 0,
       "checkAutomatically": "ON_LOAD"
     },
+    "runtimeVersion": "1.0.3",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -35,7 +37,6 @@
     },
     "android": {
       "package": "com.rahulprakash.wordoftheday",
-      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1a1a1a"
@@ -56,6 +57,7 @@
       ]
     ],
     "extra": {
+      "claudeApiKey": "",
       "admobAndroidAppId": "ca-app-pub-9942161594730475~8689542216",
       "admobAndroidBannerId": "ca-app-pub-9942161594730475/3437215532",
       "admobIosBannerId": "ca-app-pub-3940256099942544/2934735716",

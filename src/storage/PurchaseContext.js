@@ -12,6 +12,7 @@ import {
   checkEntitlement,
   purchaseRemoveAds,
   restorePurchases,
+  getProductPrice,
 } from "../utils/purchase";
 
 const STORAGE_KEY = "@wod/purchase/remove_ads/v1";
@@ -19,6 +20,7 @@ const STORAGE_KEY = "@wod/purchase/remove_ads/v1";
 const PurchaseContext = createContext({
   removeAds: false,
   ready: false,
+  price: null,
   buyRemoveAds: async () => {},
   restore: async () => {},
 });
@@ -26,17 +28,25 @@ const PurchaseContext = createContext({
 export function PurchaseProvider({ children }) {
   const [removeAds, setRemoveAds] = useState(false);
   const [ready, setReady] = useState(false);
+  const [price, setPrice] = useState(null);
 
   useEffect(() => {
     (async () => {
       try {
-        // Show cached value immediately while we fetch live state
+        // Show cached entitlement immediately while we refresh from the store.
         const raw = await AsyncStorage.getItem(STORAGE_KEY);
         if (raw === "1") setRemoveAds(true);
 
         await configurePurchases();
-        const entitled = await checkEntitlement();
+
+        // Fetch entitlement + product price in parallel.
+        const [entitled, productPrice] = await Promise.all([
+          checkEntitlement(),
+          getProductPrice(),
+        ]);
+
         setRemoveAds(entitled);
+        setPrice(productPrice);
         await AsyncStorage.setItem(STORAGE_KEY, entitled ? "1" : "0");
       } catch {}
       setReady(true);
@@ -63,8 +73,8 @@ export function PurchaseProvider({ children }) {
   }, [persist]);
 
   const value = useMemo(
-    () => ({ removeAds, ready, buyRemoveAds, restore }),
-    [removeAds, ready, buyRemoveAds, restore]
+    () => ({ removeAds, ready, price, buyRemoveAds, restore }),
+    [removeAds, ready, price, buyRemoveAds, restore]
   );
 
   return (

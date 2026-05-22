@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import HomeScreen from "../screens/HomeScreen";
 import ArchiveScreen from "../screens/ArchiveScreen";
 import FavouritesScreen from "../screens/FavouritesScreen";
+import DictionaryScreen from "../screens/DictionaryScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import { useColors, useTheme } from "../storage/ThemeContext";
 
@@ -15,6 +16,7 @@ const TAB_ICONS = {
   Home: "book-open",
   Archive: "archive",
   Favourites: "heart",
+  Dictionary: "book",
   Settings: "settings",
 };
 
@@ -67,6 +69,7 @@ function TabNavigator() {
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Archive" component={ArchiveScreen} />
         <Tab.Screen name="Favourites" component={FavouritesScreen} />
+        <Tab.Screen name="Dictionary" component={DictionaryScreen} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
     </NavigationContainer>
