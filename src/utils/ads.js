@@ -68,7 +68,7 @@ function _loadInterstitial() {
 
   _interstitialLoaded = false;
   _interstitial = InterstitialAd.createForAdRequest(unitId, {
-    requestNonPersonalizedAdsOnly: true,
+    requestNonPersonalizedAdsOnly: false,
   });
 
   _interstitial.addAdEventListener(AdEventType.LOADED, () => {

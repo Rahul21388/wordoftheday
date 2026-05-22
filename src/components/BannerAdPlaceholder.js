@@ -17,7 +17,12 @@ export default function BannerAdPlaceholder({ hidden }) {
       <BannerAd
         unitId={unitId}
         size={BannerAdSize.LARGE_ANCHORED_ADAPTIVE_BANNER}
-        requestOptions={{ requestNonPersonalizedAdsOnly: true }}
+        requestOptions={{
+          // Allow personalized ads (higher fill rate & revenue).
+          // If you add a GDPR consent dialog later, pass
+          // requestNonPersonalizedAdsOnly: !userConsented here instead.
+          requestNonPersonalizedAdsOnly: false,
+        }}
         onAdFailedToLoad={(e) => {
           if (__DEV__) console.warn("[BannerAd] failed to load:", e?.message ?? e);
         }}

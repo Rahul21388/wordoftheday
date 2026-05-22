@@ -173,7 +173,7 @@ export async function lookupWord(word) {
   const apiKey = getApiKey();
   if (!apiKey || apiKey === "YOUR_ANTHROPIC_API_KEY_HERE") {
     throw new Error(
-      "Claude API key is not set. Open app.json → expo → extra → claudeApiKey and paste your Anthropic key."
+      "Intelligent Dictionary is not configured. Please contact the app developer."
     );
   }
 
@@ -228,13 +228,13 @@ export async function lookupWord(word) {
   }
 
   const textBlock = data.content?.find((b) => b.type === "text");
-  if (!textBlock?.text) throw new Error("Empty response from Claude.");
+  if (!textBlock?.text) throw new Error("No definition returned. Please try again.");
 
   let entry;
   try {
     entry = JSON.parse(textBlock.text);
   } catch {
-    throw new Error("Unexpected response format from Claude.");
+    throw new Error("Could not parse the definition. Please try again.");
   }
 
   // ── 4. Normalise to app word shape ───────────────────────────────────────

@@ -40,7 +40,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1a1a1a"
-      }
+      },
+      "versionCode": 8
     },
     "web": {
       "favicon": "./assets/favicon.png"
